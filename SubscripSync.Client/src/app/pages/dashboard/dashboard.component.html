@@ -1,0 +1,42 @@
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Summary Card -->
+    <mat-card class="col-span-full md:col-span-1 bg-gradient-to-tr from-blue-500 to-purple-600 text-white">
+        <mat-card-header>
+            <mat-card-title>Total Monthly</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="mt-4">
+            <h1 class="text-4xl font-bold">$70.98</h1>
+        </mat-card-content>
+    </mat-card>
+
+    <!-- Subscription Cards -->
+    <mat-card *ngFor="let sub of subscriptions"
+        class="hover:shadow-lg transition-transform transform hover:-translate-y-1">
+        <mat-card-header>
+            <div mat-card-avatar class="bg-gray-200 rounded-full w-10 h-10 flex items-center justify-center">
+                <mat-icon>{{ sub.category === 'Entertainment' ? 'movie' : 'description' }}</mat-icon>
+            </div>
+            <mat-card-title>{{ sub.name }}</mat-card-title>
+            <mat-card-subtitle>{{ sub.category }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="mt-4">
+            <div class="flex justify-between items-end">
+                <div>
+                    <p class="text-sm text-gray-500">Next Payment</p>
+                    <p class="font-medium">{{ sub.nextPaymentDate | date }}</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-2xl font-bold text-gray-800">{{ sub.amount | currency:sub.currency }}</p>
+                    <p class="text-xs text-gray-400">/ {{ sub.billingCycle }}</p>
+                </div>
+            </div>
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <button mat-button color="primary">Edit</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<button mat-fab color="accent" class="fixed bottom-6 right-6">
+    <mat-icon>add</mat-icon>
+</button>

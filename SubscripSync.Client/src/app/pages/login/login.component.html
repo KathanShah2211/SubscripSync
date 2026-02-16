@@ -1,0 +1,21 @@
+<div class="flex h-screen items-center justify-center bg-gray-100">
+    <mat-card class="w-full max-w-md p-6 shadow-xl">
+        <mat-card-header class="mb-4">
+            <mat-card-title class="text-2xl font-bold text-center w-full">Welcome Back</mat-card-title>
+            <mat-card-subtitle class="text-center w-full">Sign in to SubscripSync</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="flex flex-col gap-4">
+            <mat-form-field appearance="outline" class="w-full">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="user@example.com">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="w-full">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" placeholder="********">
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions align="end" class="mt-4">
+            <button mat-button color="primary" (click)="login()">Login</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
