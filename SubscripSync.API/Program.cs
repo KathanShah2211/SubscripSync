@@ -1,7 +1,9 @@
 using SubscripSync.Application;
 using SubscripSync.Infrastructure;
 using SubscripSync.Infrastructure.Data;
+using SubscripSync.Infrastructure.Data;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,18 +59,25 @@ builder.Services.AddInfrastructure(builder.Configuration);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+// Use migrations in all environments for Docker simplicity
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<SubscripSyncDbContext>();
+    
+    // Auto-migrate on startup (creates DB if missing)
+    if (context.Database.GetPendingMigrations().Any())
+    {
+        context.Database.Migrate();
+    }
+
+    DbInitializer.Initialize(context);
+}
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    
-    // Seed Data
-    using (var scope = app.Services.CreateScope())
-    {
-        var services = scope.ServiceProvider;
-        var context = services.GetRequiredService<SubscripSyncDbContext>();
-        DbInitializer.Initialize(context);
-    }
 }
 
 app.UseCors("AllowAngularApp");
