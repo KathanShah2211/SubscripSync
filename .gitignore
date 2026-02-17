@@ -16,3 +16,8 @@ yarn-error.log
 # System
 Thumbs.db
 .DS_Store
+
+# Logs
+*.log
+api_errors.txt
+build_log.txt

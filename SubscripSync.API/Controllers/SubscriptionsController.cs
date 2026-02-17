@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using SubscripSync.Application.Subscriptions.Commands.CreateSubscription;
 using SubscripSync.Application.Subscriptions.Queries.GetUserSubscriptions;
 using System;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace SubscripSync.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class SubscriptionsController : ControllerBase

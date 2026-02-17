@@ -1,10 +1,48 @@
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Angular Material Customization */
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* Fix for Angular Material + Tailwind Preflight conflicts */
+.mat-mdc-form-field-icon-prefix,
+.mat-mdc-form-field-icon-suffix {
+    display: flex !important;
+    align-items: center !important;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mdc-text-field--outlined {
+    --mdc-outlined-text-field-container-shape: 12px;
+    background-color: #f8fafc;
+    /* Slate-50 */
+}
+
+/* Ensure label doesn't get cut off */
+.mat-mdc-form-field-infix {
+    min-height: 48px;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Reset Tailwind border for Material inputs to prevent "double border" or "2 sections" look */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[matInput] {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Ensure suffix icons are correctly aligned */
+.mat-mdc-form-field-icon-suffix {
+    display: flex !important;
+    align-items: center !important;
+}

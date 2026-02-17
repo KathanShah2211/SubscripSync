@@ -1,0 +1,67 @@
+<div
+    class="flex min-h-screen items-center justify-center bg-gradient-to-br from-violet-600 via-indigo-600 to-purple-600 p-4">
+    <mat-card class="w-full max-w-lg p-8 shadow-2xl rounded-3xl bg-white/95 backdrop-blur-xl border border-white/30">
+        <mat-card-header class="flex flex-col items-center mb-8">
+            <div class="bg-purple-50 p-4 rounded-full mb-4 shadow-sm ring-1 ring-purple-100">
+                <span class="material-icons text-purple-600 text-4xl">person_add_alt_1</span>
+            </div>
+            <mat-card-title class="text-3xl font-bold text-gray-900 text-center w-full mb-1 tracking-tight">Create
+                Account</mat-card-title>
+            <mat-card-subtitle class="text-center w-full text-gray-500 font-medium">Join SubscripSync
+                Today</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+            <form [formGroup]="registerForm" class="flex flex-col gap-5">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <mat-form-field class="w-full" color="primary" floatLabel="always">
+                        <mat-label class="font-semibold">First Name</mat-label>
+                        <input matInput formControlName="firstName">
+                        <mat-icon matSuffix class="text-gray-400">badge</mat-icon>
+                        <mat-error *ngIf="registerForm.get('firstName')?.invalid">Required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="w-full" color="primary" floatLabel="always">
+                        <mat-label class="font-semibold">Last Name</mat-label>
+                        <input matInput formControlName="lastName">
+                        <mat-icon matSuffix class="text-gray-400">badge</mat-icon>
+                        <mat-error *ngIf="registerForm.get('lastName')?.invalid">Required</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <mat-form-field class="w-full" color="primary" floatLabel="always">
+                    <mat-label class="font-semibold">Email Address</mat-label>
+                    <input matInput type="email" formControlName="email">
+                    <mat-icon matSuffix class="text-gray-400">email</mat-icon>
+                    <mat-error *ngIf="registerForm.get('email')?.hasError('email')">Invalid email address</mat-error>
+                    <mat-error *ngIf="registerForm.get('email')?.hasError('required')">Email is required</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="w-full" color="primary" floatLabel="always">
+                    <mat-label class="font-semibold">Password</mat-label>
+                    <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+                    <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
+                        [attr.aria-label]="'Hide password'" type="button">
+                        <mat-icon class="text-gray-500">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="registerForm.get('password')?.hasError('required')">Password is
+                        required</mat-error>
+                    <mat-error *ngIf="registerForm.get('password')?.hasError('minlength')">At least 6 chars</mat-error>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+
+        <mat-card-actions class="mt-6 flex flex-col gap-4">
+            <button mat-flat-button color="primary"
+                class="w-full py-3 text-lg font-bold tracking-wide rounded-xl shadow-md hover:shadow-lg transition-all duration-200"
+                (click)="register()" [disabled]="registerForm.invalid || isLoading">
+                {{ isLoading ? 'Creating Account...' : 'Sign Up' }}
+            </button>
+            <div class="flex flex-wrap justify-center items-center gap-2 w-full text-sm text-gray-600 mt-2">
+                <span>Already have an account?</span>
+                <a routerLink="/login"
+                    class="font-bold text-purple-600 hover:text-purple-800 hover:underline transition-colors cursor-pointer whitespace-nowrap">Log
+                    In</a>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</div>

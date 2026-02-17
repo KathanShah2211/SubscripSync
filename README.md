@@ -4,15 +4,14 @@
 
 Built with **.NET 9 (Web API)** and **Angular 19**, it follows **Clean Architecture** principles to demonstrate enterprise-grade software design.
 
-![Dashboard Preview](https://via.placeholder.com/800x400?text=SubscripSync+Dashboard+Preview)
-
 ## 🚀 Key Features
 
 - **📊 Interactive Dashboard**: View all active subscriptions, costs, and next payment dates at a glance.
 - **📈 Analytics Module**: Visualize spending distribution by category (Entertainment, Software, etc.) and monitor monthly run rates.
+- **🔐 Secure Authentication**: User Registration and Login protected by **JWT (JSON Web Tokens)**.
 - **🔄 Renewal Engine**: Background services (HostedService) automatically calculate next billing dates based on custom cycles (Weekly, Monthly, Yearly).
 - **🛡️ Secure & Scalable**: Implementation of Clean Architecture with CQRS pattern (MediatR) and Entity Framework Core.
-- **⚡ Modern UI**: sleek, responsive interface built with Angular Material and Tailwind CSS.
+- **⚡ Modern UI**: Sleek, responsive interface built with Angular Material and Tailwind CSS, featuring **Glassmorphism** design.
 
 ## 🛠️ Tech Stack
 

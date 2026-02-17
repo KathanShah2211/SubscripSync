@@ -22,7 +22,33 @@ builder.Services.AddCors(options =>
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "SubscripSync API", Version = "v1" });
+    c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+    {
+        In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+        Description = "Please enter token",
+        Name = "Authorization",
+        Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http,
+        BearerFormat = "JWT",
+        Scheme = "bearer"
+    });
+    c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+    {
+        {
+            new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+            {
+                Reference = new Microsoft.OpenApi.Models.OpenApiReference
+                {
+                    Type=Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
+                    Id="Bearer"
+                }
+            },
+            new string[]{}
+        }
+    });
+});
 
 // Register Application & Infrastructure
 builder.Services.AddApplication();
@@ -49,6 +75,7 @@ app.UseCors("AllowAngularApp");
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
