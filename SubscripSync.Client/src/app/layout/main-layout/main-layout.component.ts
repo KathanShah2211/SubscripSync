@@ -35,4 +35,13 @@ export class MainLayoutComponent {
       }
     })
   }
+
+
+  openProfile() {
+    Swal.fire({
+      title: 'Profile',
+      text: 'Profile management coming soon!',
+      icon: 'info'
+    });
+  }
 }

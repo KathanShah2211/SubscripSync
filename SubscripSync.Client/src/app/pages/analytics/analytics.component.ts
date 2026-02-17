@@ -4,6 +4,7 @@ import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
 import { MatCardModule } from '@angular/material/card';
 import { SubscriptionService } from '../../services/subscription.service';
+import { AuthService } from '../../services/auth.service';
 import { Subscription } from '../../models/subscription.model';
 
 @Component({
@@ -19,6 +20,7 @@ export class AnalyticsComponent implements OnInit {
     // Pie Chart - Spending by Category
     public pieChartOptions: ChartConfiguration['options'] = {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
             legend: {
                 display: true,
@@ -35,6 +37,7 @@ export class AnalyticsComponent implements OnInit {
     // Bar Chart - Monthly Costs
     public barChartOptions: ChartConfiguration['options'] = {
         responsive: true,
+        maintainAspectRatio: false,
     };
     public barChartData: ChartData<'bar'> = {
         labels: ['Monthly Cost'],
@@ -44,10 +47,17 @@ export class AnalyticsComponent implements OnInit {
     };
     public barChartType: ChartType = 'bar';
 
-    constructor(private subscriptionService: SubscriptionService) { }
+    constructor(
+        private subscriptionService: SubscriptionService,
+        private authService: AuthService
+    ) { }
 
     ngOnInit(): void {
-        this.loadData();
+        const userId = this.authService.getUserId();
+        if (userId) {
+            this.userId = userId;
+            this.loadData();
+        }
     }
 
     loadData() {

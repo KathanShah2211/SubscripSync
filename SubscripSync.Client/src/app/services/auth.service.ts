@@ -46,6 +46,11 @@ export class AuthService {
         return userStr ? JSON.parse(userStr) : null;
     }
 
+    getUserId(): string | null {
+        const user = this.getUser();
+        return user ? user.id : null;
+    }
+
     private setSession(authResult: any): void {
         localStorage.setItem(this.tokenKey, authResult.token);
         // Remove token from user object before storing to avoid duplication/confusion

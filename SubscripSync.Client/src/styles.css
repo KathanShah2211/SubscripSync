@@ -46,3 +46,9 @@ input[matInput] {
     display: flex !important;
     align-items: center !important;
 }
+
+/* Force Material Icons font family */
+.material-icons,
+.mat-icon {
+    font-family: 'Material Icons' !important;
+}

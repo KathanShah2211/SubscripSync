@@ -3,7 +3,7 @@
     <span class="flex-auto"></span>
     <button mat-button routerLink="/dashboard">Dashboard</button>
     <button mat-button routerLink="/analytics">Analytics</button>
-    <button mat-button>Profile</button>
+    <button mat-button (click)="openProfile()">Profile</button>
     <button mat-button color="warn" (click)="logout()">Logout</button>
 </mat-toolbar>
 
