@@ -4,7 +4,7 @@ services:
     container_name: subscripsync-db
     environment:
       - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=YourStrong@Password123 # In prod, use .env file
+      - MSSQL_SA_PASSWORD=${MSSQL_PASSWORD}
     ports:
       - "1433:1433"
     volumes:
@@ -20,7 +20,8 @@ services:
     ports:
       - "5083:8080" # Map host 5083 to container 8080
     environment:
-      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=SubscripSyncDb;User Id=sa;Password=YourStrong@Password123;TrustServerCertificate=True;
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=SubscripSyncDb;User Id=sa;Password=${MSSQL_PASSWORD};TrustServerCertificate=True;
+      - JwtSettings__Secret=${JWT_SECRET}
     restart: on-failure
 
   client:
