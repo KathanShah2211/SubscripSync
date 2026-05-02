@@ -8,6 +8,7 @@ namespace SubscripSync.Infrastructure.Data
     {
         public static void Initialize(SubscripSyncDbContext context)
         {
+            context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
             // Look for any users.

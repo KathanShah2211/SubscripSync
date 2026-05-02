@@ -6,6 +6,8 @@ using SubscripSync.Domain.Interfaces;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
+using SubscripSync.Application.Notifications.Commands.CreateNotification;
 
 namespace SubscripSync.Infrastructure.Services
 {
@@ -32,6 +34,7 @@ namespace SubscripSync.Infrastructure.Services
                     {
                         var subscriptionRepo = scope.ServiceProvider.GetRequiredService<ISubscriptionRepository>();
                         var repository = scope.ServiceProvider.GetRequiredService<IRepository<PaymentHistory>>();
+                        var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
 
                         var renewals = await subscriptionRepo.GetUpcomingRenewalsAsync(DateTime.UtcNow);
 
@@ -53,6 +56,14 @@ namespace SubscripSync.Infrastructure.Services
                             // Update Next Payment Date
                             sub.Renew();
                             await subscriptionRepo.UpdateAsync(sub);
+
+                            await mediator.Send(new CreateNotificationCommand
+                            {
+                                UserId = sub.UserId,
+                                Title = "Subscription Renewed",
+                                Message = $"Your subscription '{sub.Name}' has been successfully renewed.",
+                                Type = NotificationType.Info
+                            });
                         }
                     }
                 }

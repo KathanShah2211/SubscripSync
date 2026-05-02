@@ -12,6 +12,7 @@ namespace SubscripSync.Infrastructure.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Subscription> Subscriptions { get; set; }
         public DbSet<PaymentHistory> PaymentHistories { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

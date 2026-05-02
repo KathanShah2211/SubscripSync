@@ -25,6 +25,7 @@ namespace SubscripSync.Infrastructure
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<INotificationRepository, NotificationRepository>();
 
             // Authentication
             var jwtSettings = new JwtSettings();
