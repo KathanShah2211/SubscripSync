@@ -1,0 +1,85 @@
+<div class="profile-page">
+    <!-- Page Header -->
+    <div class="page-header animate-slide-up">
+        <h1 class="page-title">Profile</h1>
+        <p class="page-subtitle">Manage your account and preferences</p>
+    </div>
+
+    <!-- Profile Card -->
+    <div class="profile-card animate-slide-up" style="animation-delay: 80ms;">
+        <!-- Banner -->
+        <div class="profile-banner">
+            <div class="banner-gradient"></div>
+            <div class="avatar-container">
+                <div class="profile-avatar">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="avatar-svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Content -->
+        <div class="profile-content">
+            <form [formGroup]="profileForm" (ngSubmit)="saveSettings()" class="profile-form">
+                <!-- User Info Section -->
+                <div class="section-header">
+                    <mat-icon class="section-icon">person</mat-icon>
+                    <h3 class="section-title">Personal Information</h3>
+                </div>
+
+                <div class="form-grid">
+                    <mat-form-field appearance="outline" class="w-full">
+                        <mat-label>First Name</mat-label>
+                        <input matInput formControlName="firstName" placeholder="First Name">
+                        <mat-icon matSuffix class="field-icon">badge</mat-icon>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="w-full">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput formControlName="lastName" placeholder="Last Name">
+                        <mat-icon matSuffix class="field-icon">badge</mat-icon>
+                    </mat-form-field>
+                </div>
+
+                <mat-form-field appearance="outline" class="w-full">
+                    <mat-label>Email Address</mat-label>
+                    <input matInput formControlName="email" placeholder="Email Address" type="email">
+                    <mat-icon matSuffix class="field-icon">email</mat-icon>
+                </mat-form-field>
+
+                <!-- Divider -->
+                <div class="section-divider"></div>
+
+                <!-- Settings Section -->
+                <div class="section-header">
+                    <mat-icon class="section-icon section-icon-blue">settings</mat-icon>
+                    <h3 class="section-title">Application Settings</h3>
+                </div>
+
+                <div class="form-half">
+                    <mat-form-field appearance="outline" class="w-full">
+                        <mat-label>Preferred Currency</mat-label>
+                        <mat-select formControlName="preferredCurrency">
+                            <mat-option *ngFor="let currency of currencies" [value]="currency">
+                                {{ currency }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-hint>Used for Dashboard and Analytics totals</mat-hint>
+                    </mat-form-field>
+                </div>
+
+                <!-- Save Button -->
+                <div class="form-actions">
+                    <button mat-flat-button color="primary" type="submit" [disabled]="!profileForm.valid"
+                        class="save-btn">
+                        <mat-icon>check</mat-icon>
+                        Save Settings
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

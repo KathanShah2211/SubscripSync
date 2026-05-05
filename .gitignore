@@ -13,12 +13,25 @@ dist/
 npm-debug.log
 yarn-error.log
 
+# Environment & Secrets
+.env
+*.env.*
+
+# ASP.NET Development Config
+appsettings.Development.json
+Properties/launchSettings.json
+
 # System
 Thumbs.db
-.env
 .DS_Store
 
-# Logs
+# Logs & Debug Artifacts
 *.log
 api_errors.txt
 build_log.txt
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~

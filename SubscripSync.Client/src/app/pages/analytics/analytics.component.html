@@ -1,27 +1,62 @@
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <!-- Category Breakdown -->
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>Spending by Category</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <div class="block" style="height: 300px;">
+<div class="analytics-page">
+    <!-- Page Header -->
+    <div class="page-header animate-slide-up">
+        <h1 class="page-title">Analytics</h1>
+        <p class="page-subtitle">Understand your subscription spending patterns</p>
+    </div>
+
+    <!-- Summary Stats -->
+    <div class="analytics-stats animate-slide-up" style="animation-delay: 80ms;">
+        <div class="mini-stat">
+            <span class="mini-stat-label">Total Monthly</span>
+            <span class="mini-stat-value gradient-text">{{ totalMonthly | currency:displayCurrency }}</span>
+        </div>
+        <div class="mini-stat-divider"></div>
+        <div class="mini-stat">
+            <span class="mini-stat-label">Categories</span>
+            <span class="mini-stat-value">{{ categoryCount }}</span>
+        </div>
+        <div class="mini-stat-divider"></div>
+        <div class="mini-stat">
+            <span class="mini-stat-label">Avg per Sub</span>
+            <span class="mini-stat-value">{{ avgPerSub | currency:displayCurrency }}</span>
+        </div>
+    </div>
+
+    <!-- Charts Grid -->
+    <div class="charts-grid">
+        <!-- Spending by Category (Doughnut) -->
+        <div class="chart-card animate-slide-up" style="animation-delay: 160ms;">
+            <div class="chart-card-header">
+                <div class="chart-icon">
+                    <mat-icon>pie_chart</mat-icon>
+                </div>
+                <div>
+                    <h3 class="chart-title">Spending by Category</h3>
+                    <p class="chart-desc">Monthly cost distribution</p>
+                </div>
+            </div>
+            <div class="chart-container">
                 <canvas baseChart [data]="pieChartData" [type]="pieChartType" [options]="pieChartOptions">
                 </canvas>
             </div>
-        </mat-card-content>
-    </mat-card>
+        </div>
 
-    <!-- Total Monthly Cost -->
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>Monthly Run Rate</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <div class="block" style="height: 300px;">
+        <!-- Monthly Run Rate (Bar) -->
+        <div class="chart-card animate-slide-up" style="animation-delay: 240ms;">
+            <div class="chart-card-header">
+                <div class="chart-icon chart-icon-blue">
+                    <mat-icon>bar_chart</mat-icon>
+                </div>
+                <div>
+                    <h3 class="chart-title">Monthly Run Rate</h3>
+                    <p class="chart-desc">Total monthly spending breakdown</p>
+                </div>
+            </div>
+            <div class="chart-container">
                 <canvas baseChart [data]="barChartData" [type]="barChartType" [options]="barChartOptions">
                 </canvas>
             </div>
-        </mat-card-content>
-    </mat-card>
+        </div>
+    </div>
 </div>

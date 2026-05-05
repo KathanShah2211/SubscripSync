@@ -1,0 +1,201 @@
+/* ============================================
+   PROFILE PAGE
+   ============================================ */
+.profile-page {
+    padding: 32px 24px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Page Header */
+.page-header {
+    margin-bottom: 28px;
+}
+
+.page-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+    letter-spacing: -0.03em;
+}
+
+.page-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* ============================================
+   PROFILE CARD
+   ============================================ */
+.profile-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+}
+
+/* Banner */
+.profile-banner {
+    position: relative;
+    height: 120px;
+}
+
+.banner-gradient {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #8c3fff 0%, #6d1bf0 40%, #3b82f6 100%);
+    opacity: 0.8;
+}
+
+.avatar-container {
+    position: absolute;
+    bottom: -36px;
+    left: 32px;
+}
+
+.profile-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+    background: var(--bg-surface);
+    border: 3px solid var(--bg-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.avatar-svg {
+    width: 36px;
+    height: 36px;
+    color: var(--accent-primary);
+}
+
+/* ============================================
+   PROFILE CONTENT
+   ============================================ */
+.profile-content {
+    padding: 52px 32px 32px;
+}
+
+/* Section Headers */
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.section-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    color: var(--accent-primary);
+}
+
+.section-icon-blue {
+    color: #60a5fa;
+}
+
+.section-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+/* Form Layout */
+.profile-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.form-half {
+    max-width: 50%;
+}
+
+/* Field icon styling */
+.field-icon {
+    color: var(--text-muted) !important;
+    font-size: 20px !important;
+    width: 20px !important;
+    height: 20px !important;
+}
+
+/* Section Divider */
+.section-divider {
+    height: 1px;
+    background: var(--border-subtle);
+    margin: 16px 0 24px;
+}
+
+/* Save Button */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+.save-btn {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 10px 28px !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    border-radius: 12px !important;
+    background: var(--accent-gradient) !important;
+    box-shadow: 0 4px 20px rgba(124, 47, 255, 0.3) !important;
+    transition: all 0.3s ease !important;
+}
+
+.save-btn:hover:not([disabled]) {
+    box-shadow: 0 8px 32px rgba(124, 47, 255, 0.45) !important;
+    transform: translateY(-1px);
+}
+
+.save-btn mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+.animate-slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 640px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-half {
+        max-width: 100%;
+    }
+
+    .profile-content {
+        padding: 52px 20px 24px;
+    }
+}
