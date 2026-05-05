@@ -18,7 +18,7 @@ jobs:
       uses: docker/setup-buildx-action@v3
 
     - name: Build Docker Compose Services
-      run: docker compose -f docker-compose.yml build
+      run: docker buildx bake -f docker-compose.yml
 
     # Uncomment the following steps to enable pushing to Docker Hub or another registry
     # - name: Log in to Docker Hub
